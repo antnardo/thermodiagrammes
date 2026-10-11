@@ -64,7 +64,13 @@ Le paquet s'installe depuis GitHub (ci-dessous). Pas de PyPI.
 
 ## Installation
 
-**Avec pip depuis GitHub**, quand le réseau et pip sont disponibles :
+**Avec pip depuis PyPI**, quand le réseau et pip sont disponibles :
+
+```bash
+pip install thermodiagrammes
+```
+
+(ou `uv add thermodiagrammes`). **Depuis GitHub**, pour la version de développement :
 
 ```bash
 pip install git+https://github.com/antnardo/thermodiagrammes
@@ -73,7 +79,7 @@ pip install git+https://github.com/antnardo/thermodiagrammes
 **Avec la roue d'une release**, pour un poste qui a pip mais pas git : chaque
 [release](https://github.com/antnardo/thermodiagrammes/releases) porte
 `thermodiagrammes-<version>-py3-none-any.whl` (et le sdist `.tar.gz`, avec
-`examples/`), qui s'installe par `pip install thermodiagrammes-0.1.0-py3-none-any.whl`.
+`examples/`), qui s'installe par `pip install thermodiagrammes-<version>-py3-none-any.whl`.
 
 **Copier le dossier**, sans pip ni réseau : le dossier `src/thermodiagrammes/` se pose
 à côté des scripts, et `from thermodiagrammes import PH` fonctionne, à condition
