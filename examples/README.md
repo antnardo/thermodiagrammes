@@ -9,7 +9,7 @@ demandent une distribution TeX.
 
 ## Les diagrammes de l'eau
 
-### Diagramme (P, h) de l'eau avec toutes ses isolignes (`diagramme_ph_eau.py`)
+### Diagramme (P, h) de l'eau avec toutes ses isolignes ([`diagramme_ph_eau.py`](diagramme_ph_eau.py))
 
 Le diagramme des frigoristes de l'eau, du point triple au double de la pression
 critique, avec le dôme de saturation et quatre familles d'isolignes : les isotitres en
@@ -25,7 +25,7 @@ est enregistrée par `enregistre()` sous son nom par défaut,
 
 ![Diagramme (P, h) de l'eau : pression en bar en échelle logarithmique de 0,006 à 450 bar, enthalpie massique en MJ/kg ; dôme de saturation noir, isotitres en tirets, isothermes orange avec leur palier, isentropes vertes et isochores rouges, chacune étiquetée](images/diagramme_ph_eau.png)
 
-### Diagramme (P, h) de l'eau en kelvin, de 0,4 à 500 bar (`diagramme_ph_eau_kelvin.py`)
+### Diagramme (P, h) de l'eau en kelvin, de 0,4 à 500 bar ([`diagramme_ph_eau_kelvin.py`](diagramme_ph_eau_kelvin.py))
 
 Le même diagramme en grand format (16 × 10 pouces), en kelvin, de 0 à 5000 kJ/kg et de
 0,4 à 500 bar : on voit la zone vapeur loin du dôme, où les isothermes deviennent
@@ -38,7 +38,7 @@ passe ses options à `savefig`. D'après J.-J. Fleck, modifié par Y. Alméras.
 
 ![Diagramme (P, h) de l'eau de 0 à 5000 kJ/kg et de 0,4 à 500 bar, températures en kelvin : dôme de saturation, isotitres de 0,1 à 0,9, isothermes rouge sombre verticales dans la vapeur, isentropes orange et isochores bleues étiquetées](images/diagramme_ph_eau_kelvin.png)
 
-### Diagramme (T, s) de l'eau : isobares, isotitres, isenthalpes (`diagramme_ts_eau.py`)
+### Diagramme (T, s) de l'eau : isobares, isotitres, isenthalpes ([`diagramme_ts_eau.py`](diagramme_ts_eau.py))
 
 Le diagramme entropique de l'eau de 0 à 440 °C : la cloche de saturation, les isobares
 en tiret-point de 0,01 à 10 000 bar (palier horizontal dans le dôme, et dans le liquide
@@ -51,7 +51,7 @@ J.-J. Fleck.
 
 ![Diagramme (T, s) de l'eau de 0 à 10 kJ/K/kg et de 0 à 440 °C : cloche de saturation noire, isobares turquoise en tiret-point de 0,01 à 10 000 bar, isotitres de 0,2 à 0,8 et isenthalpes vertes étiquetées en kJ/kg](images/diagramme_ts_eau.png)
 
-### Diagramme de Mollier (h, s) de l'eau (`mollier_eau.py`)
+### Diagramme de Mollier (h, s) de l'eau ([`mollier_eau.py`](mollier_eau.py))
 
 Le diagramme (h, s) autour de la courbe de rosée, de l'entropie du point critique à
 11 kJ/K/kg : la courbe de saturation en noir, trois isotitres, trois isothermes (Tc,
@@ -65,7 +65,7 @@ auxquelles on donne un `label`. D'après C. Cayssiols.
 
 ![Diagramme de Mollier de l'eau : enthalpie massique de 1800 à 4000 kJ/kg en fonction de l'entropie massique de 4,4 à 11 kJ/K/kg ; courbe de saturation noire, isotitres grises, isothermes rouges, isobares orange, légende en bas à droite](images/mollier_eau.png)
 
-### Diagramme de Clapeyron (P, v) de l'eau (`clapeyron_eau.py`)
+### Diagramme de Clapeyron (P, v) de l'eau ([`clapeyron_eau.py`](clapeyron_eau.py))
 
 Le diagramme (P, v) en échelles logarithmiques, de 10⁻⁴ à 12 m³/kg et de 0,1 à
 1000 bar : la courbe de saturation, les isothermes d'Andrews à 100 °C, Tc et 2 Tc
@@ -80,7 +80,7 @@ C. Cayssiols.
 
 ![Diagramme de Clapeyron de l'eau en échelles log-log : pression de 0,1 à 1000 bar, volume massique de 0,0001 à 10 m³/kg ; courbe de saturation noire, isothermes rouges, isotitres grises, isenthalpes bleues, isentropes vertes, légende en haut à droite](images/clapeyron_eau.png)
 
-### Isothermes d'Andrews de l'eau (`pv_eau.py`)
+### Isothermes d'Andrews de l'eau ([`pv_eau.py`](pv_eau.py))
 
 Trois figures en LaTeX autour des isothermes d'Andrews. La première est le diagramme
 « par défaut » : la fonction `isothermes_d_andrews` reçoit un nom de fluide, en fait un
@@ -100,7 +100,7 @@ pad_inches=0)`. D'après J.-J. Fleck.
 
 ![Les mêmes treize isothermes avec la courbe de saturation en noir, qui relie les extrémités des paliers et culmine au point critique](images/pv_eau_saturation.png)
 
-### Diagramme de phases (P, T) de l'eau (`diagramme_pt_eau.py`)
+### Diagramme de phases (P, T) de l'eau ([`diagramme_pt_eau.py`](diagramme_pt_eau.py))
 
 Le diagramme (P, T) de −60 à 700 °C et de 10⁻⁴ à 10⁴ bar : `saturation` trace la
 courbe de vaporisation du point triple T au point critique C, la courbe de fusion (loi
@@ -118,7 +118,7 @@ de CoolProp.
 
 ## Les diagrammes simplifiés
 
-### Trois diagrammes simplifiés de l'eau (`diagrammes_simplifies_eau.py`)
+### Trois diagrammes simplifiés de l'eau ([`diagrammes_simplifies_eau.py`](diagrammes_simplifies_eau.py))
 
 Trois petites figures de 3 × 3 pouces en LaTeX, avec une seule famille d'isolignes
 chacune pour rester lisibles à cette taille : (T, s) avec les isotitres de 0,1 à 0,9,
@@ -139,7 +139,7 @@ servent aux trois : `UNITES.depuis_si` convertit les limites calculées à parti
 
 ## Un autre fluide
 
-### Diagramme (P, h) de l'azote, côté vapeur, avec deux points (`diagramme_ph_azote.py`)
+### Diagramme (P, h) de l'azote, côté vapeur, avec deux points ([`diagramme_ph_azote.py`](diagramme_ph_azote.py))
 
 Un fluide autre que l'eau, désigné par son alias frigoriste :
 `PH("R728", label="R728 (azote)", hlim=(75, 400), plim=(1, 40))`, en bar, kJ/kg, °C et
@@ -155,7 +155,7 @@ J.-J. Fleck.
 
 ## CoolProp sans habillage
 
-### Tour d'horizon de CoolProp (`coolprop_exemples.py`)
+### Tour d'horizon de CoolProp ([`coolprop_exemples.py`](coolprop_exemples.py))
 
 Un script sans `thermodiagrammes`, qui montre ce que CoolProp sait faire seul :
 l'interface haut niveau `PropsSI` (température critique, ébullition sous 1 atm, phase,
