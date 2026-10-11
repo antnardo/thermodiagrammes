@@ -12,9 +12,8 @@ par deux grandeurs (``etat``, ``coordonnees``) et les transformations
 (``trace_chemin``) : le chauffage isobare de 25 à 200 °C sous 1 bar traverse la
 courbe de vaporisation.
 
-D'après un exemple de la documentation de CoolProp. L'ancien script calculait la
-courbe de fusion du CO₂ avec les constantes de l'eau et ajoutait à la main la
-glace VI, que la loi de fusion de CoolProp couvre déjà.
+D'après un exemple de la documentation de CoolProp ; la courbe de fusion vient de
+la loi de fusion de CoolProp, glace VI comprise.
 """
 
 import matplotlib.pyplot as plt

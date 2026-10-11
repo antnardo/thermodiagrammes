@@ -1,5 +1,9 @@
 # thermodiagrammes
 
+[![PyPI](https://img.shields.io/pypi/v/thermodiagrammes.svg)](https://pypi.org/project/thermodiagrammes/)
+[![CI](https://github.com/antnardo/thermodiagrammes/actions/workflows/ci.yml/badge.svg)](https://github.com/antnardo/thermodiagrammes/actions/workflows/ci.yml)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/antnardo/thermodiagrammes/blob/main/LICENSE)
+
 Diagrammes thermodynamiques d'un fluide réel, étiquetés et prêts à distribuer en
 exercice : (P, h) des frigoristes, (T, s) entropique, (h, s) de Mollier, (P, v) de
 Clapeyron et diagramme de phases (P, T). Les propriétés viennent de
@@ -20,7 +24,7 @@ diagramme.ajoute_point(vapeur.h, vapeur.P, "1")
 diagramme.enregistre()  # Diagramme_Ph_coolprop_R134a.pdf
 ```
 
-Le paquet s'installe depuis GitHub (ci-dessous). Pas de PyPI.
+Le paquet s'installe depuis PyPI (`pip install thermodiagrammes`) ou depuis GitHub (ci-dessous).
 
 ## Sommaire
 
@@ -313,12 +317,12 @@ décrit chaque exemple avec sa figure.
 | --- | --- |
 | `diagramme_ph_azote.py` | (P, h) de l'azote côté vapeur, isothermes, isentropes, isotitres, deux points |
 | `diagramme_ph_eau.py` | (P, h) de l'eau, toutes les isolignes aux valeurs automatiques (`valeurs_auto_*`) |
-| `diagramme_ph_eau_T6.py` | (P, h) de l'eau en kelvin, de 0,4 à 500 bar, pour le tome 6 du cours |
+| `diagramme_ph_eau_kelvin.py` | (P, h) de l'eau en kelvin, de 0,4 à 500 bar, en grand format |
 | `diagramme_ts_eau.py` | (T, s) de l'eau : isobares, isotitres, isenthalpes |
 | `mollier_eau.py` | (h, s) de l'eau autour de la courbe de rosée, légende |
 | `clapeyron_eau.py` | (P, v) de l'eau : isothermes d'Andrews, isotitres, isenthalpes, isentropes |
-| `pv_eau.py` | isothermes d'Andrews en LaTeX pour le cours, trois figures |
-| `diagrammes_simplifies_eau.py` | trois petits diagrammes (T, s), (P, h), (h, s) en LaTeX pour le cours |
+| `pv_eau.py` | isothermes d'Andrews en LaTeX : le diagramme par défaut, puis une fenêtre choisie sans et avec la saturation |
+| `diagrammes_simplifies_eau.py` | trois petits diagrammes (T, s), (P, h), (h, s) en LaTeX, 3 × 3 pouces |
 | `diagramme_pt_eau.py` | diagramme de phases de l'eau : vaporisation, fusion, sublimation, isochores, un chauffage isobare |
 | `coolprop_exemples.py` | un tutoriel de CoolProp nu : `PropsSI`, air humide, fluides incompressibles, mélanges, `PropertyPlot` |
 

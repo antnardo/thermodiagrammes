@@ -1,10 +1,8 @@
-"""Diagrammes simplifiés de l'eau pour le cours : (T, s) avec isotitres, (P, h) avec
-isothermes, (h, s) avec isobares.
+"""Diagrammes simplifiés de l'eau : (T, s) avec isotitres, (P, h) avec isothermes,
+(h, s) avec isobares.
 
-D'après J.-J. Fleck (lycée Kléber). Les trois scripts ts/ph/hs_water_simplified.py
-partageaient 90 % de leur code (et hs était une copie octet pour octet de ts) :
-ils sont réunis ici autour de ``thermodiagrammes``. Figures de 3 × 3 pouces,
-en LaTeX, peu d'étiquettes pour rester lisibles à cette taille.
+D'après J.-J. Fleck (lycée Kléber). Trois figures de 3 × 3 pouces, en LaTeX, peu
+d'étiquettes pour rester lisibles à cette taille.
 """
 
 import matplotlib.pyplot as plt
@@ -57,7 +55,7 @@ def ts_isotitres() -> None:
     ts.trace_isos(
         "Q", np.linspace(0.1, 0.9, 9), position=0.25, linewidth=0.8, style_etiquette={"fontsize": 6}
     )
-    finalise(ts, "14_diagrammes_fig-Ts-eau_isoX.pdf", r"$s$ (J/K/kg)", None)
+    finalise(ts, "diagrammes_simplifies_eau_Ts.pdf", r"$s$ (J/K/kg)", None)
 
 
 def ph_isothermes() -> None:
@@ -82,7 +80,7 @@ def ph_isothermes() -> None:
         color="red",
         style_etiquette={"fontsize": 6},
     )
-    finalise(ph, "14_diagrammes_fig-Ph-eau_isoT.pdf", r"$h$ (kJ/kg)", "P (bar)")
+    finalise(ph, "diagrammes_simplifies_eau_Ph.pdf", r"$h$ (kJ/kg)", "P (bar)")
 
 
 def hs_isobares() -> None:
@@ -98,7 +96,7 @@ def hs_isobares() -> None:
         color="darkgreen",
         style_etiquette={"fontsize": 6},
     )
-    finalise(hs, "14_diagrammes_fig-hs-eau_isoP.pdf", r"$s$ (J/K/kg)", r"$h$ (kJ/kg)")
+    finalise(hs, "diagrammes_simplifies_eau_hs.pdf", r"$s$ (J/K/kg)", r"$h$ (kJ/kg)")
 
 
 if __name__ == "__main__":

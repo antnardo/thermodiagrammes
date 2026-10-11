@@ -1,8 +1,7 @@
-"""Isothermes d'Andrews de l'eau dans le diagramme (P, v), pour le cours.
+"""Isothermes d'Andrews de l'eau dans le diagramme (P, v).
 
 D'après J.-J. Fleck (lycée Kléber). Trois figures : le diagramme par défaut,
-puis la fenêtre du cours sans et avec la courbe de saturation, dans deux
-fichiers distincts (l'ancien script écrasait la première par la seconde).
+puis une fenêtre choisie sans et avec la courbe de saturation.
 """
 
 import matplotlib.pyplot as plt
@@ -47,13 +46,11 @@ FLUIDE = "Water"
 isothermes_d_andrews(FLUIDE)  # le diagramme « par défaut »
 
 # Fenêtre choisie après observation du diagramme par défaut (à adapter à un autre fluide)
-cours = {
+fenetre = {
     "plim": (1e4, 5e7),
     "vlim": (5e-4, 3e1),
     "T": [293 + 40 * i for i in range(13)],
     "legende": False,
 }
-isothermes_d_andrews(FLUIDE, fichier="14_diagrammes_fig-Pv-eau.pdf", **cours)
-isothermes_d_andrews(
-    FLUIDE, fichier="14_diagrammes_fig-Pv-eau-saturation.pdf", saturation=True, **cours
-)
+isothermes_d_andrews(FLUIDE, fichier="pv_eau_fenetre.pdf", **fenetre)
+isothermes_d_andrews(FLUIDE, fichier="pv_eau_saturation.pdf", saturation=True, **fenetre)

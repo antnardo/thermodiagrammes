@@ -1,8 +1,7 @@
 """Diagramme de Mollier (h, s) de l'eau, autour de la courbe de rosée.
 
 D'après C. Cayssiols (2017). La saturation est calculée du point triple au point
-critique (l'ancien script allait de 273 à 973 K : 47 % des points au-dessus de
-Tc) ; ``matplotlib2tikz``, abandonné, est remplacé par un PDF.
+critique ; la figure est enregistrée en PDF.
 """
 
 import matplotlib.pyplot as plt
@@ -28,5 +27,5 @@ for grandeur, valeurs, couleur, nom in (
     lignes[0].set_label(nom)
 diagramme.saturation()[0].set_label("Courbe de saturation")
 diagramme.ax.legend()
-plt.savefig("08_diagrammes_fig-mollier_eau.pdf")
+plt.savefig("mollier_eau.pdf")
 plt.show()

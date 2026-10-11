@@ -73,4 +73,4 @@ print(f"Sous 1 bar : v_liquide = {vL:.4g} m³/kg, v_vapeur = {vG:.4g} m³/kg")
 # Tracé de base de CoolProp ; pour des diagrammes étiquetés, voir thermodiagrammes.PH.
 diagramme = PropertyPlot(fluide, "PH", unit_system="KSI")
 diagramme.calc_isolines()
-diagramme.savefig("enthalpy_pressure_graph_for_Water.png")
+diagramme.savefig("coolprop_exemples.pdf")

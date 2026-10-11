@@ -3,7 +3,7 @@
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le
 [versionnage sémantique](https://semver.org/lang/fr/).
 
-## [Non publié]
+## [0.1.3] - 2026-10-11
 
 ### Ajouté
 
@@ -12,6 +12,11 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le
 
 ### Modifié
 
+- `diagramme_ph_eau_T6.py` devient `diagramme_ph_eau_kelvin.py` ; chaque exemple enregistre
+  sa figure sous son propre nom (`mollier_eau.pdf`, `pv_eau_fenetre.pdf`,
+  `diagrammes_simplifies_eau_Ts.pdf`…). README et docstrings des exemples sans
+  références internes ; la page PyPI, qui reprend le README de la roue, est donc à jour
+  à partir de cette version.
 - La légende du diagramme par défaut de `pv_eau.py` (vingt-six isothermes) tient dans
   la zone vide en haut à droite au lieu de déborder sous les axes.
 

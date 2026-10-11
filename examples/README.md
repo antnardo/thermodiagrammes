@@ -25,7 +25,7 @@ est enregistrée par `enregistre()` sous son nom par défaut,
 
 ![Diagramme (P, h) de l'eau : pression en bar en échelle logarithmique de 0,006 à 450 bar, enthalpie massique en MJ/kg ; dôme de saturation noir, isotitres en tirets, isothermes orange avec leur palier, isentropes vertes et isochores rouges, chacune étiquetée](images/diagramme_ph_eau.png)
 
-### Diagramme (P, h) de l'eau en kelvin, de 0,4 à 500 bar (`diagramme_ph_eau_T6.py`)
+### Diagramme (P, h) de l'eau en kelvin, de 0,4 à 500 bar (`diagramme_ph_eau_kelvin.py`)
 
 Le même diagramme en grand format (16 × 10 pouces), en kelvin, de 0 à 5000 kJ/kg et de
 0,4 à 500 bar : on voit la zone vapeur loin du dôme, où les isothermes deviennent
@@ -36,7 +36,7 @@ isochores une par une ; les isentropes viennent de `valeurs_auto_s`.
 `enregistre("DiagrammeWater.png", dpi=200, transparent=True)` montre que `enregistre`
 passe ses options à `savefig`. D'après J.-J. Fleck, modifié par Y. Alméras.
 
-![Diagramme (P, h) de l'eau de 0 à 5000 kJ/kg et de 0,4 à 500 bar, températures en kelvin : dôme de saturation, isotitres de 0,1 à 0,9, isothermes rouge sombre verticales dans la vapeur, isentropes orange et isochores bleues étiquetées](images/diagramme_ph_eau_T6.png)
+![Diagramme (P, h) de l'eau de 0 à 5000 kJ/kg et de 0,4 à 500 bar, températures en kelvin : dôme de saturation, isotitres de 0,1 à 0,9, isothermes rouge sombre verticales dans la vapeur, isentropes orange et isochores bleues étiquetées](images/diagramme_ph_eau_kelvin.png)
 
 ### Diagramme (T, s) de l'eau : isobares, isotitres, isenthalpes (`diagramme_ts_eau.py`)
 

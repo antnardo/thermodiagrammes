@@ -1,9 +1,7 @@
 """Diagramme des frigoristes de l'eau, de 0,4 à 500 bar et de 0 à 5000 kJ/kg.
 
 D'après J.-J. Fleck (lycée Kléber), modifié par Y. Alméras puis A. Marchand.
-L'ancien script reposait sur ``CoolProp.Plots.PropsPlot`` (CoolProp 5) et
-mélangeait Pa et kPa, J et kJ : tout est maintenant en bar, kJ/kg, K, kJ/K/kg
-et m³/kg.
+Unités d'affichage : bar, kJ/kg, K, kJ/K/kg et m³/kg.
 """
 
 import matplotlib.pyplot as plt
@@ -36,4 +34,4 @@ diagramme.ax.set_xlabel("Enthalpie massique (kJ/kg)")
 diagramme.ax.set_ylabel("Pression (bar)")
 
 plt.tight_layout()
-diagramme.enregistre("DiagrammeWater.png", dpi=200, transparent=True)
+diagramme.enregistre("diagramme_ph_eau_kelvin.pdf")

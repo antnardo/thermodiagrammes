@@ -1,8 +1,8 @@
 """Diagramme (T, s) de l'eau : isobares, isotitres et isenthalpes.
 
 D'après J.-J. Fleck (lycée Kléber), modifié par A. Marchand. Les isobares
-s'arrêtent à la pression maximale du modèle de l'eau (1 GPa) : l'ancien script
-les poussait jusqu'à 5 GPa. Valeurs en °C, bar, kJ/kg et kJ/K/kg.
+s'arrêtent à la pression maximale du modèle de l'eau (1 GPa). Valeurs en °C, bar,
+kJ/kg et kJ/K/kg.
 """
 
 import matplotlib.pyplot as plt
