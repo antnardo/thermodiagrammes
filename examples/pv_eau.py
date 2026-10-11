@@ -32,7 +32,7 @@ def isothermes_d_andrews(
     if saturation:
         diagramme.saturation(linewidth=2)
     if legende:
-        diagramme.ax.legend()
+        diagramme.ax.legend(loc="upper right", ncol=2, fontsize=6)
     diagramme.ax.set_xlabel(r"$v$ (m$^3\,\cdot\,$kg$^{-1}$)")
     diagramme.ax.set_ylabel("$P$ (Pa)")
     diagramme.ax.grid(color=".5", which="major", linestyle="-", linewidth=0.5)

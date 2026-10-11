@@ -49,4 +49,5 @@ for grandeur, valeurs, couleur in (
 diagramme.ax.set_xlabel("$v$ (m$^3$/kg)")
 diagramme.ax.set_ylabel("$p$ (bar)")
 diagramme.ax.legend()
+diagramme.enregistre("clapeyron_eau.pdf")
 plt.show()

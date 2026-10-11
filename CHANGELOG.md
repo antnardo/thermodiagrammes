@@ -3,6 +3,18 @@
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le
 [versionnage sémantique](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Ajouté
+
+- La galerie des exemples `examples/README.md`, l'image de chaque exemple dans
+  `examples/images/` ; chaque exemple enregistre sa figure en PDF à côté de lui.
+
+### Modifié
+
+- La légende du diagramme par défaut de `pv_eau.py` (vingt-six isothermes) tient dans
+  la zone vide en haut à droite au lieu de déborder sous les axes.
+
 ## [0.1.2] - 2026-10-11
 
 ### Modifié

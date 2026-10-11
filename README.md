@@ -302,8 +302,12 @@ la phase, `derivee("H", "T", "P", P=…, T=…)` donne une dérivée partielle (
 
 ## Exemples
 
+![Diagramme (P, h) de l'eau tracé par examples/diagramme_ph_eau.py : dôme de saturation, isothermes, isentropes, isochores et isotitres étiquetées](https://raw.githubusercontent.com/antnardo/thermodiagrammes/main/examples/images/diagramme_ph_eau.png)
+
 Le dossier `examples/` montre chaque diagramme ; les scripts s'exécutent depuis un
-dossier de travail, où ils écrivent leurs figures :
+dossier de travail, où ils écrivent leurs figures. La galerie
+[`examples/README.md`](https://github.com/antnardo/thermodiagrammes/blob/main/examples/README.md)
+décrit chaque exemple avec sa figure.
 
 | Script | Ce qu'il trace |
 | --- | --- |
