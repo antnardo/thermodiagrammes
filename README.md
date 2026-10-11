@@ -338,15 +338,22 @@ version du paquet et joint la roue et le sdist à la release.
 Le code descend des scripts py4phys de J.-J. Fleck (lycée Kléber, 2014) pour les
 diagrammes (P, h), (T, s) et (P, v) sur CoolProp, adaptés à partir d'octobre 2015 pour
 les figures d'exercices et d'activités documentaires de MP (géothermie, cycles
-frigorifiques, TH-FI01, TH-MT10…), repris en entier en août 2018 (« c'est galère de se
-baser sur le Ph_plot fourni par CoolProp »), rangés en paquet `thermo` en 2023, puis
-réécrits en 2026 dans le dépôt privé `pyphysique` (`pyphysique.thermo.diagrammes`,
+frigorifiques, TH-FI01, TH-MT10…), repris en entier en août 2018, rangés en paquet
+`thermo` en 2023, puis réécrits en 2026 dans le dépôt privé `pyphysique` (`pyphysique.thermo.diagrammes`,
 `pyphysique.thermo.fluide`) avec les cinq diagrammes, les états et les cycles ; ce dépôt
 les publie, seuls les chemins d'import changent.
 
 `CoolProp.Plots.PropertyPlot` trace les mêmes isolignes, mais sans étiquettes ni cycle ;
 [fluprodia](https://fluprodia.readthedocs.io/) étiquette les isolignes et place des
 états, mais sans virgule décimale ni transformations tracées entre deux états.
+[luacoolprop](https://ctan.org/pkg/luacoolprop) de Christophe Jorssen (CTAN, septembre
+2026) fait la même chose dans LuaTeX : la bibliothèque partagée de CoolProp chargée par
+FFI, les cinq mêmes diagrammes tracés par pgfplots avec la courbe de saturation, les
+isotitres, les chemins de transformation et des étiquettes placées automatiquement
+(`pgfplots-autonode`), pour LaTeX, plain TeX et ConTeXt ; il demande `--shell-escape` et
+une CoolProp installée à part. Ici, Python et matplotlib sans TeX : les états se
+calculent et les figures se tracent dans le même script, celui d'un corrigé pythontex
+ou d'une feuille d'exercices.
 
 ## Licence
 
