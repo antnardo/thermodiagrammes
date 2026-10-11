@@ -27,11 +27,8 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le
 
 ## [0.1.0] - 2026-10-11
 
-Première version. Le paquet reprend `pyphysique.thermo.diagrammes` et
-`pyphysique.thermo.fluide`, descendants de scripts de 2015 réécrits de 2023 à 2026 dans le dépôt privé `pyphysique`
-pour les figures et les corrigés des exercices de cycles thermodynamiques, et les
-publie tels quels : seuls les chemins d'import changent (`from thermodiagrammes import
-PH, Fluide`).
+Première version : les cinq diagrammes, les états et les cycles, pour les figures et
+les corrigés d'exercices de cycles thermodynamiques.
 
 ### Ajouté
 
@@ -67,8 +64,5 @@ PH, Fluide`).
 
 ### Modifié
 
-- Chemins d'import : `pyphysique.thermo.diagrammes` devient `thermodiagrammes`
-  (tout est réexporté en tête de paquet), `pyphysique.thermo.fluide` devient
-  `thermodiagrammes.fluide` (`Fluide` aussi en tête de paquet).
 - CoolProp est une dépendance du paquet, non plus un extra : plus de chargement
   paresseux, et le message sans CoolProp dit `pip install CoolProp`.

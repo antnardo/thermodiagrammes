@@ -342,12 +342,9 @@ version du paquet et joint la roue et le sdist à la release.
 ## Antériorité
 
 Le code descend des scripts py4phys de J.-J. Fleck (lycée Kléber, 2014) pour les
-diagrammes (P, h), (T, s) et (P, v) sur CoolProp, adaptés à partir d'octobre 2015 pour
-les figures d'exercices et d'activités documentaires de MP (géothermie, cycles
-frigorifiques, TH-FI01, TH-MT10…), repris en entier en août 2018, rangés en paquet
-`thermo` en 2023, puis réécrits en 2026 dans le dépôt privé `pyphysique` (`pyphysique.thermo.diagrammes`,
-`pyphysique.thermo.fluide`) avec les cinq diagrammes, les états et les cycles ; ce dépôt
-les publie, seuls les chemins d'import changent.
+diagrammes (P, h), (T, s) et (P, v) sur CoolProp, développés depuis 2015 pour les
+figures d'exercices de thermodynamique en CPGE, jusqu'aux cinq diagrammes, aux états
+et aux cycles d'aujourd'hui.
 
 `CoolProp.Plots.PropertyPlot` trace les mêmes isolignes, mais sans étiquettes ni cycle ;
 [fluprodia](https://fluprodia.readthedocs.io/) étiquette les isolignes et place des
