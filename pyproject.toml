@@ -1,0 +1,88 @@
+[project]
+name = "thermodiagrammes"
+dynamic = ["version"]
+description = "Diagrammes thermodynamiques (P, h), (T, s), (h, s), (P, v) et (P, T) d'un fluide réel avec CoolProp : isolignes étiquetées, états et cycles, pour des figures d'exercices"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-CC-BY-NC-SA-4.0"]
+authors = [{ name = "Antonin Marchand" }]
+keywords = [
+    "thermodynamique",
+    "diagramme enthalpique",
+    "diagramme entropique",
+    "Mollier",
+    "Clapeyron",
+    "cycle frigorifique",
+    "CoolProp",
+    "matplotlib",
+    "enseignement",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Intended Audience :: Education",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Natural Language :: French",
+    "Typing :: Typed",
+]
+dependencies = [
+    "coolprop>=6.6",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+]
+
+[project.urls]
+Homepage = "https://github.com/antnardo/thermodiagrammes"
+Repository = "https://github.com/antnardo/thermodiagrammes"
+Issues = "https://github.com/antnardo/thermodiagrammes/issues"
+Changelog = "https://github.com/antnardo/thermodiagrammes/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = ["pytest", "ruff", "mypy"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# La version vit dans le module : une seule source, que la publication compare à
+# l'étiquette de la release.
+[tool.hatch.version]
+path = "src/thermodiagrammes/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/thermodiagrammes"]
+
+# Le sdist : le code, les exemples et la documentation ; ni les tests ni uv.lock.
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/examples",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE",
+    "/LICENSE-CC-BY-NC-SA-4.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "N", "C4", "PTH", "RET"]
+# RUF001-003 : la prose utilise des tirets typographiques et des accents.
+# N802, N803, N806, N815, N816 : la notation de la thermodynamique (T, P, Psat, Tsat,
+# L_vap, Plogscale…) prime sur la casse PEP 8 ; N817 : « CoolProp as CP » est l'usage.
+ignore = ["RUF001", "RUF002", "RUF003", "N802", "N803", "N806", "N815", "N816", "N817"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+
+[tool.mypy]
+files = ["src"]
+ignore_missing_imports = true
