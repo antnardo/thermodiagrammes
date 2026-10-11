@@ -59,7 +59,7 @@ def ts_isotitres() -> None:
 
 
 def ph_isothermes() -> None:
-    # Isothermes à partir de 300 K : l'ancienne à 273 K était sous le point triple.
+    # Isothermes à partir de 300 K : à 273 K on serait sous le point triple.
     T = np.arange(300, si("T", 1.8 * EAU.Tcrit), 50)
     h_l = si("H", EAU.H(P=EAU.Ptriple + 1, Q=0))
     h_v = si("H", EAU.H(P=EAU.Ptriple + 1, Q=1))
