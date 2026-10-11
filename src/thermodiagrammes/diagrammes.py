@@ -72,7 +72,9 @@ __all__ = [
     "Diagramme",
     "Etat",
     "Unites",
+    "celsius",
     "formate_nombre",
+    "kelvin",
 ]
 
 TK = 273.15
@@ -117,6 +119,11 @@ _HORS_MODELE = (
     "hors du modèle de CoolProp : les valeurs sont-elles bien en unités d'affichage "
     "(bar, kJ/kg, °C… selon Unites) et non en SI ?"
 )
+
+
+def _scalaire(tableau: np.ndarray) -> Any:
+    """Un ``float`` pour un tableau sans dimension, le tableau sinon."""
+    return float(tableau) if tableau.ndim == 0 else tableau
 
 
 def formate_nombre(valeur: float, chiffres: int | None = None) -> str:
@@ -173,18 +180,32 @@ class Unites:
         return getattr(self, grandeur) if grandeur != "Q" else ""
 
     def depuis_si(self, grandeur: str, valeur: npt.ArrayLike) -> Any:
-        """Valeur SI → unité d'affichage."""
+        """Valeur SI → unité d'affichage : ``depuis_si("P", fluide.Pcrit)`` donne
+        220,6 (bar) pour l'eau si ``P == "bar"``. Un scalaire rend un ``float``."""
         tableau = np.asarray(valeur, float)
         if grandeur == "T":
-            return tableau - TK if self.T == "celsius" else tableau
-        return tableau / self._FACTEURS[grandeur][self._unite(grandeur)]
+            return _scalaire(tableau - TK if self.T == "celsius" else tableau)
+        return _scalaire(tableau / self._FACTEURS[grandeur][self._unite(grandeur)])
 
     def vers_si(self, grandeur: str, valeur: npt.ArrayLike) -> Any:
-        """Valeur en unité d'affichage → SI."""
+        """Valeur en unité d'affichage → SI : ``vers_si("P", 10)`` donne 1e6 (Pa) si
+        ``P == "bar"``. Un scalaire rend un ``float``."""
         tableau = np.asarray(valeur, float)
         if grandeur == "T":
-            return tableau + TK if self.T == "celsius" else tableau
-        return tableau * self._FACTEURS[grandeur][self._unite(grandeur)]
+            return _scalaire(tableau + TK if self.T == "celsius" else tableau)
+        return _scalaire(tableau * self._FACTEURS[grandeur][self._unite(grandeur)])
+
+    @staticmethod
+    def celsius(T: npt.ArrayLike) -> Any:
+        """Kelvin → degré Celsius, quelles que soient les unités d'affichage :
+        ``celsius(fluide.Tcrit)`` donne 373,9 pour l'eau. L'inverse est ``kelvin``."""
+        return _scalaire(np.asarray(T, float) - TK)
+
+    @staticmethod
+    def kelvin(T: npt.ArrayLike) -> Any:
+        """Degré Celsius → kelvin : ``fluide.H(T=kelvin(100), Q=0)``, puisque ``Fluide``
+        parle en SI. L'inverse est ``celsius``."""
+        return _scalaire(np.asarray(T, float) + TK)
 
     def texte(self, grandeur: str) -> str:
         """Unité en mathtext (sans les $), compatible avec ``text.usetex``."""
@@ -194,6 +215,10 @@ class Unites:
             return ""
         unite = getattr(self, grandeur).replace("^3", "^{3}")
         return self._TEXTES[grandeur].format(unite)
+
+
+celsius = Unites.celsius
+kelvin = Unites.kelvin
 
 
 @dataclass(frozen=True, slots=True)
@@ -558,6 +583,12 @@ class Diagramme:
             if grandeur not in LETTRES:
                 raise ValueError(f"Grandeur {grandeur!r} inconnue : choisir parmi {list(LETTRES)}.")
         si = {grandeur: self.unites.vers_si(grandeur, v) for grandeur, v in grandeurs.items()}
+        entrees = ", ".join(f"{LETTRES[g]} = {v}" for g, v in grandeurs.items())
+        return self._etat_si(si, entrees, niveau)
+
+    def _etat_si(self, si: dict[str, float], entrees: str, niveau: int) -> Etat:
+        """L'état fixé par deux grandeurs en SI, rendu en unités d'affichage ;
+        ``entrees`` décrit l'état dans l'avertissement hors modèle."""
         valeurs = {}
         for grandeur, champ in LETTRES.items():
             valeur = self.fluide.prop(grandeur, **si)
@@ -565,9 +596,21 @@ class Diagramme:
                 valeur = math.nan
             valeurs[champ] = float(self.unites.depuis_si(grandeur, valeur))
         if any(math.isnan(v) for champ, v in valeurs.items() if champ != "x"):
-            entrees = ", ".join(f"{LETTRES[g]} = {v}" for g, v in grandeurs.items())
             warnings.warn(f"État ({entrees}) {_HORS_MODELE}", stacklevel=niveau)
         return Etat(**valeurs)
+
+    def etat_critique(self) -> Etat:
+        """L'état du point critique, en unités d'affichage (``x`` vaut ``nan`` : le titre
+        n'y est pas défini) : ``PH("Water").etat_critique().P`` donne 220,6 bar."""
+        fluide = self.fluide
+        etat = self._etat_si({"T": fluide.Tcrit, "V": 1 / fluide.rhocrit}, "point critique", 3)
+        return Etat(etat.T, etat.P, etat.h, etat.s, etat.v, math.nan)
+
+    def etat_triple(self, x: float = 0.0) -> Etat:
+        """L'état sur le palier du point triple, liquide saturant par défaut, vapeur
+        saturante pour ``x=1``, en unités d'affichage."""
+        fluide = self.fluide
+        return self._etat_si({"T": fluide.Ttriple, "Q": x}, f"point triple, x = {x}", 3)
 
     def coordonnees(self, **grandeurs: float) -> tuple[float, float]:
         """Coordonnées (x, y) de l'état fixé par deux grandeurs parmi T, P, H, S, V et Q,

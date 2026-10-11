@@ -13,7 +13,9 @@ from thermodiagrammes.diagrammes import (
     Diagramme,
     Etat,
     Unites,
+    celsius,
     formate_nombre,
+    kelvin,
 )
 from thermodiagrammes.fluide import Fluide
 
@@ -37,6 +39,25 @@ class TestUnites:
         unites = Unites()
         assert unites.depuis_si(grandeur, si) == pytest.approx(affiche)
         assert unites.vers_si(grandeur, affiche) == pytest.approx(si)
+
+    def test_un_scalaire_rend_un_float(self):
+        assert type(Unites().depuis_si("P", 1e5)) is float
+        assert type(Unites().vers_si("T", 100)) is float
+
+    def test_un_tableau_reste_un_tableau(self):
+        assert Unites().depuis_si("H", np.array([1e3, 2e3])).tolist() == [1.0, 2.0]
+
+    @pytest.mark.parametrize(
+        ("kelvins", "degres"), [(273.15, 0.0), (373.15, 100.0), (647.096, 373.946)]
+    )
+    def test_celsius_et_kelvin_sont_inverses(self, kelvins, degres):
+        assert celsius(kelvins) == pytest.approx(degres)
+        assert kelvin(degres) == pytest.approx(kelvins)
+        assert kelvin(celsius(kelvins)) == pytest.approx(kelvins)
+
+    def test_celsius_ne_depend_pas_des_unites_d_affichage(self):
+        assert Unites.celsius is celsius and Unites.kelvin is kelvin
+        assert celsius(np.array([273.15, 373.15])).tolist() == pytest.approx([0.0, 100.0])
 
     def test_unite_inconnue_refusee(self):
         with pytest.raises(ValueError, match="inconnue"):
@@ -234,6 +255,30 @@ class TestEtat:
         with pytest.warns(UserWarning, match=r"P = 100000\.0.*unités d'affichage"):
             etat = PH(eau).etat(P=1e5, Q=1)
         assert math.isnan(etat.h)
+
+    def test_etat_critique_en_unites_d_affichage(self, eau):
+        critique = PH(eau).etat_critique()
+        assert pytest.approx(celsius(eau.Tcrit)) == critique.T
+        assert pytest.approx(eau.Pcrit / 1e5, rel=1e-9) == critique.P
+        assert critique.h == pytest.approx(eau.H(T=eau.Tcrit, D=eau.rhocrit) / 1e3)
+        assert critique.v == pytest.approx(1 / eau.rhocrit)
+        assert math.isnan(critique.x)
+
+    def test_etat_critique_suit_les_unites(self, eau):
+        critique = TS(eau, unites=Unites(T="kelvin", P="MPa")).etat_critique()
+        assert pytest.approx(eau.Tcrit) == critique.T
+        assert pytest.approx(eau.Pcrit / 1e6, rel=1e-9) == critique.P
+
+    @pytest.mark.parametrize("x", [0.0, 1.0])
+    def test_etat_triple_sur_le_palier(self, eau, x):
+        triple = PH(eau).etat_triple(x)
+        assert pytest.approx(celsius(eau.Ttriple)) == triple.T
+        assert pytest.approx(eau.Ptriple / 1e5) == triple.P
+        assert triple.h == pytest.approx(eau.H(T=eau.Ttriple, Q=x) / 1e3)
+        assert triple.x == x
+
+    def test_etat_triple_liquide_par_defaut(self, eau):
+        assert PH(eau).etat_triple() == PH(eau).etat_triple(0.0)
 
     @pytest.mark.parametrize("grandeurs", [{"T": 1}, {"T": 1, "P": 2, "Q": 3}, {"U": 1, "P": 2}])
     def test_grandeurs_invalides_refusees(self, eau, grandeurs):

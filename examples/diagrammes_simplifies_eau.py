@@ -14,14 +14,15 @@ from thermodiagrammes import HS, PH, TS, Diagramme, Fluide, Unites
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif", "font.size": 10})
 
-EAU = Fluide("Water")
-UNITES = Unites(P="bar", H="kJ", S="J", T="kelvin")
+EAU = Fluide("Water")  # parle en SI
+UNITES = Unites(P="bar", H="kJ", S="J", T="kelvin")  # les diagrammes parlent dans celles-ci
+si = UNITES.depuis_si  # une seule porte entre les deux, aucun facteur à la main
 TAILLE = (3, 3)  # pouces
 
 
 def isobares_courantes() -> np.ndarray:
     """1 et 3 × 10ⁿ bar, de 5 % de la pression triple à 1,1 × la pression critique."""
-    p_min, p_max = 0.05 * EAU.Ptriple / 1e5, 1.1 * EAU.Pcrit / 1e5
+    p_min, p_max = si("P", 0.05 * EAU.Ptriple), si("P", 1.1 * EAU.Pcrit)
     decades = range(int(np.floor(np.log10(p_min))) + 1, int(np.ceil(np.log10(p_max))))
     return np.array([a * 10.0**b for b in decades for a in (1, 3)])
 
@@ -42,13 +43,13 @@ def finalise(diagramme: Diagramme, fichier: str, xlabel: str, ylabel: str | None
 
 
 def ts_isotitres() -> None:
-    s_l = EAU.S(T=EAU.Ttriple + 1, Q=0)
-    s_v = EAU.S(T=EAU.Ttriple + 1, Q=1)
+    s_l = si("S", EAU.S(T=EAU.Ttriple + 1, Q=0))
+    s_v = si("S", EAU.S(T=EAU.Ttriple + 1, Q=1))
     ts = TS(
         EAU,
         unites=UNITES,
         slim=(0.9 * s_l, 1.1 * s_v),
-        Tlim=(EAU.Ttriple + 1, 1.5 * EAU.Tcrit),
+        Tlim=(si("T", EAU.Ttriple + 1), si("T", 1.5 * EAU.Tcrit)),
         titre="",
     )
     ts.cree(figsize=TAILLE)
@@ -61,14 +62,14 @@ def ts_isotitres() -> None:
 
 def ph_isothermes() -> None:
     # Isothermes à partir de 300 K : l'ancienne à 273 K était sous le point triple.
-    T = np.arange(300, 1.8 * EAU.Tcrit, 50)
-    h_l = EAU.H(P=EAU.Ptriple + 1, Q=0) / 1e3
-    h_v = EAU.H(P=EAU.Ptriple + 1, Q=1) / 1e3
+    T = np.arange(300, si("T", 1.8 * EAU.Tcrit), 50)
+    h_l = si("H", EAU.H(P=EAU.Ptriple + 1, Q=0))
+    h_v = si("H", EAU.H(P=EAU.Ptriple + 1, Q=1))
     ph = PH(
         EAU,
         unites=UNITES,
         hlim=(0.5 * h_l, 1.7 * h_v),
-        plim=((EAU.Ptriple + 1) / 1e5, 5 * EAU.Pcrit / 1e5),
+        plim=(si("P", EAU.Ptriple + 1), si("P", 5 * EAU.Pcrit)),
         titre="",
     )
     ph.cree(figsize=TAILLE)

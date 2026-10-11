@@ -197,10 +197,44 @@ diagramme = PH("Water", unites=Unites(T="kelvin", P="MPa", H="MJ"), hlim=(0, 4),
 diagramme.etat(T=373.15, Q=0)  # P en MPa, h en MJ/kg, s en kJ/K/kg, v en m³/kg
 ```
 
-`Unites.depuis_si(grandeur, valeur)` et `vers_si` convertissent dans les deux sens,
 `Unites.texte(grandeur)` écrit l'unité en mathtext. Les nombres s'écrivent avec une
 virgule (`formate_nombre(1.5)` donne `"1,5"`, les graduations aussi) sans
 `setlocale` : rien ne change pour le programme appelant.
+
+### Changer d'unité
+
+Deux mondes, une règle : **`Fluide` parle en SI** (K, Pa, J/kg, J/K/kg, m³/kg, comme
+CoolProp), **un diagramme parle dans ses unités d'affichage**. Entre les deux, le
+paquet fournit les passages ; un `- 273.15` ou un `/ 1e3` écrit à la main est le
+signe qu'il en manque un.
+
+| Besoin | Passage |
+| --- | --- |
+| un état complet (T, P, h, s, v, x) en unités d'affichage | `diagramme.etat(T=100, Q=0)`, deux grandeurs en unités d'affichage |
+| le point critique, le point triple | `diagramme.etat_critique()`, `diagramme.etat_triple(x=0)` (liquide) ou `etat_triple(1)` (vapeur) |
+| une température de `Fluide` (K) vers des °C, et retour | `celsius(fluide.Tcrit)`, `kelvin(100)` (aussi `Unites.celsius`, `Unites.kelvin`) |
+| une valeur SI quelconque vers l'unité d'affichage, et retour | `unites.depuis_si("P", fluide.Pcrit)`, `unites.vers_si("H", 2500)` |
+
+Un scalaire rend un `float`, un tableau un tableau. Avant et après :
+
+```python
+from thermodiagrammes import PV, celsius
+
+diagramme = PV("Water", vlim=(1e-4, 12), plim=(0.1, 1000))
+f = diagramme.fluide  # SI
+# Avant : des conversions à la main, et une erreur en embuscade
+Tc = f.Tcrit - 273.15
+T = [100, Tc, 2 * (Tc + 273.15) - 273.15]
+h_c = f.H(T=f.Tcrit, D=f.rhocrit) / 1e3
+# Après : Tc reste en kelvin, le diagramme fait les conversions
+Tc = f.Tcrit
+T = [100, celsius(Tc), celsius(2 * Tc)]
+h_c = diagramme.etat_critique().h
+```
+
+`Fluide` ne prend pas d'unités : c'est la couche CoolProp, et la cohérence des unités
+tient à ce qu'elle n'en ait qu'un jeu. Pour un calcul en SI à partir d'un état lu sur
+le diagramme, `unites.vers_si("H", etat.h)` ou `kelvin(etat.T)`.
 
 ## Fluide : les propriétés en SI
 
@@ -256,8 +290,8 @@ la phase, `derivee("H", "T", "P", P=…, T=…)` donne une dérivée partielle (
 
 | Module | Contenu |
 | --- | --- |
-| `thermodiagrammes` | la tête de paquet : `PH`, `TS`, `HS`, `PV`, `PT`, `Diagramme`, `Etat`, `Unites`, `formate_nombre`, `Fluide`, `__version__` |
-| `thermodiagrammes.diagrammes` | les diagrammes, `Etat`, `Unites`, `formate_nombre` |
+| `thermodiagrammes` | la tête de paquet : `PH`, `TS`, `HS`, `PV`, `PT`, `Diagramme`, `Etat`, `Unites`, `celsius`, `kelvin`, `formate_nombre`, `Fluide`, `__version__` |
+| `thermodiagrammes.diagrammes` | les diagrammes, `Etat`, `Unites`, `celsius`, `kelvin`, `formate_nombre` |
 | `thermodiagrammes.fluide` | `Fluide` |
 
 ## Exemples
@@ -301,10 +335,14 @@ version du paquet et joint la roue et le sdist à la release.
 
 ## Antériorité
 
-Le code reprend, réécrit et étend un script de J.-J. Fleck (lycée Kléber) pour le
-diagramme (P, h), développé de 2024 à 2026 dans le dépôt privé `pyphysique`
-(`pyphysique.thermo.diagrammes`, `pyphysique.thermo.fluide`) pour les figures et les
-corrigés des exercices de cycles thermodynamiques ; seuls les chemins d'import changent.
+Le code descend des scripts py4phys de J.-J. Fleck (lycée Kléber, 2014) pour les
+diagrammes (P, h), (T, s) et (P, v) sur CoolProp, adaptés à partir d'octobre 2015 pour
+les figures d'exercices et d'activités documentaires de MP (géothermie, cycles
+frigorifiques, TH-FI01, TH-MT10…), repris en entier en août 2018 (« c'est galère de se
+baser sur le Ph_plot fourni par CoolProp »), rangés en paquet `thermo` en 2023, puis
+réécrits en 2026 dans le dépôt privé `pyphysique` (`pyphysique.thermo.diagrammes`,
+`pyphysique.thermo.fluide`) avec les cinq diagrammes, les états et les cycles ; ce dépôt
+les publie, seuls les chemins d'import changent.
 
 `CoolProp.Plots.PropertyPlot` trace les mêmes isolignes, mais sans étiquettes ni cycle ;
 [fluprodia](https://fluprodia.readthedocs.io/) étiquette les isolignes et place des

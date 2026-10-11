@@ -9,14 +9,14 @@ import matplotlib.pyplot as plt
 
 from thermodiagrammes import HS, Fluide, Unites
 
-f = Fluide("Water")
-s_c = f.S(T=f.Tcrit, D=f.rhocrit) / 1e3  # kJ/K/kg, point critique
-unites = Unites(P="bar", H="kJ", S="kJ", T="kelvin")
+f = Fluide("Water")  # parle en SI
+unites = Unites(P="bar", H="kJ", S="kJ", T="kelvin")  # le diagramme parle dans celles-ci
+s_c = unites.depuis_si("S", f.S(T=f.Tcrit, D=f.rhocrit))  # kJ/K/kg, point critique
 diagramme = HS(f, unites=unites, slim=(s_c, 11), hlim=(1800, 4000), titre="Diagramme de Mollier")
 
 x_vap = [0.25, 0.5, 0.75]
-T = [f.Tcrit, 2 * f.Tcrit, 373]  # K
-P = [1, f.Pcrit / 1e5, 1e-2]  # bar
+T = [f.Tcrit, 2 * f.Tcrit, 373]  # K : les unités d'affichage sont ici en kelvin
+P = [1, diagramme.etat_critique().P, 1e-2]  # bar
 
 diagramme.cree()
 for grandeur, valeurs, couleur, nom in (

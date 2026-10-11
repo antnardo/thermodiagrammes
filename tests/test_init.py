@@ -17,7 +17,9 @@ NOMS_DES_EXERCICES = {
     "Etat",
     "Fluide",
     "Unites",
+    "celsius",
     "formate_nombre",
+    "kelvin",
 }
 
 

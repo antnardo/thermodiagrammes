@@ -3,12 +3,26 @@
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le
 [versionnage sémantique](https://semver.org/lang/fr/).
 
-## [Unreleased]
+## [0.1.1] - 2026-10-11
+
+### Ajouté
+
+- Les changements d'unités, documentés (README, « Changer d'unité ») et outillés :
+  `celsius(T)` et `kelvin(T)` (aussi `Unites.celsius`, `Unites.kelvin`), les états
+  `Diagramme.etat_critique()` et `etat_triple(x=0)` en unités d'affichage, et
+  `Unites.depuis_si` / `vers_si` qui rendent un `float` pour un scalaire. Les
+  exemples `clapeyron_eau`, `mollier_eau` et `diagrammes_simplifies_eau` n'ont plus
+  de `- 273.15` ni de `/ 1e3` à la main.
+
+### Modifié
+
+- L'antériorité du README : la lignée remonte aux scripts py4phys de J.-J. Fleck
+  (2014) adaptés en octobre 2015, non à 2024.
 
 ## [0.1.0] - 2026-10-11
 
 Première version. Le paquet reprend `pyphysique.thermo.diagrammes` et
-`pyphysique.thermo.fluide`, écrits de 2024 à 2026 dans le dépôt privé `pyphysique`
+`pyphysique.thermo.fluide`, descendants de scripts de 2015 réécrits de 2023 à 2026 dans le dépôt privé `pyphysique`
 pour les figures et les corrigés des exercices de cycles thermodynamiques, et les
 publie tels quels : seuls les chemins d'import changent (`from thermodiagrammes import
 PH, Fluide`).

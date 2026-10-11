@@ -18,7 +18,7 @@ Usage ::
     diagramme.enregistre()  # Diagramme_Ph_coolprop_R134a.pdf
 
 La tête de paquet expose les cinq diagrammes (``PH``, ``TS``, ``HS``, ``PV``, ``PT``),
-leur base ``Diagramme``, ``Etat``, ``Unites`` et ``formate_nombre``
+leur base ``Diagramme``, ``Etat``, ``Unites``, ``celsius``, ``kelvin`` et ``formate_nombre``
 (``thermodiagrammes.diagrammes``), et ``Fluide`` (``thermodiagrammes.fluide``), les
 propriétés d'un fluide CoolProp en SI.
 """
@@ -32,11 +32,13 @@ from thermodiagrammes.diagrammes import (
     Diagramme,
     Etat,
     Unites,
+    celsius,
     formate_nombre,
+    kelvin,
 )
 from thermodiagrammes.fluide import Fluide
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "HS",
@@ -49,5 +51,7 @@ __all__ = [
     "Fluide",
     "Unites",
     "__version__",
+    "celsius",
     "formate_nombre",
+    "kelvin",
 ]
