@@ -25,7 +25,7 @@ import numpy.typing as npt
 try:
     from CoolProp import CoolProp as CP
 except ModuleNotFoundError as erreur:
-    raise ImportError("CoolProp manque : pip install 'pyphysique[coolprop]'") from erreur
+    raise ImportError("CoolProp manque : pip install CoolProp") from erreur
 
 __all__ = ["Fluide"]
 

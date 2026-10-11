@@ -3,15 +3,14 @@
 D'après C. Cayssiols (2017). Rappel de la syntaxe de CoolProp :
 ``PropsSI("grandeur voulue", "param 1", valeur 1, "param 2", valeur 2, "fluide")``
 avec T, P, D (masse volumique), Q (titre en vapeur), H, S…
-<https://coolprop.org/coolprop/HighLevelAPI.html>. Ici, ``pyphysique.thermo.PV``
+<https://coolprop.org/coolprop/HighLevelAPI.html>. Ici, ``thermodiagrammes.PV``
 s'en charge ; la saturation est échantillonnée en température, et non plus en
 pression à partir de 0,1 bar.
 """
 
 import matplotlib.pyplot as plt
 
-from pyphysique.thermo import PV
-from pyphysique.thermo.diagrammes import Unites
+from thermodiagrammes import PV, Unites
 
 diagramme = PV(
     "Water",

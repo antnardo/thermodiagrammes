@@ -8,8 +8,7 @@ fichiers distincts (l'ancien script écrasait la première par la seconde).
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyphysique.thermo import PV, Fluide
-from pyphysique.thermo.diagrammes import Unites
+from thermodiagrammes import PV, Fluide, Unites
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif", "font.size": 10})
 

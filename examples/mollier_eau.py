@@ -7,8 +7,7 @@ Tc) ; ``matplotlib2tikz``, abandonné, est remplacé par un PDF.
 
 import matplotlib.pyplot as plt
 
-from pyphysique.thermo import HS, Fluide
-from pyphysique.thermo.diagrammes import Unites
+from thermodiagrammes import HS, Fluide, Unites
 
 f = Fluide("Water")
 s_c = f.S(T=f.Tcrit, D=f.rhocrit) / 1e3  # kJ/K/kg, point critique

@@ -61,7 +61,7 @@ from matplotlib.ticker import (
     NullFormatter,
 )
 
-from pyphysique.thermo.fluide import Fluide
+from thermodiagrammes.fluide import Fluide
 
 __all__ = [
     "HS",

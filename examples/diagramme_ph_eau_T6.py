@@ -9,8 +9,7 @@ et m³/kg.
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyphysique.thermo import PH
-from pyphysique.thermo.diagrammes import Unites
+from thermodiagrammes import PH, Unites
 
 diagramme = PH(
     "Water",

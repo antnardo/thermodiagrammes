@@ -7,7 +7,7 @@ en bar, kJ/kg, °C et kJ/K/kg.
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyphysique.thermo import PH
+from thermodiagrammes import PH
 
 diagramme = PH("R728", label="R728 (azote)", hlim=(75, 400), plim=(1, 40))
 

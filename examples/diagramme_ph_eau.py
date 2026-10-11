@@ -7,8 +7,7 @@ kJ/K/kg et m³/kg.
 
 import matplotlib.pyplot as plt
 
-from pyphysique.thermo import PH
-from pyphysique.thermo.diagrammes import Unites
+from thermodiagrammes import PH, Unites
 
 diagramme = PH(
     "Water",

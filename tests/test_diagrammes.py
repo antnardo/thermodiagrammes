@@ -4,9 +4,7 @@ import sys
 import numpy as np
 import pytest
 
-pytest.importorskip("CoolProp")
-
-from pyphysique.thermo.diagrammes import (
+from thermodiagrammes.diagrammes import (
     HS,
     PH,
     PT,
@@ -17,7 +15,7 @@ from pyphysique.thermo.diagrammes import (
     Unites,
     formate_nombre,
 )
-from pyphysique.thermo.fluide import Fluide
+from thermodiagrammes.fluide import Fluide
 
 
 @pytest.fixture(scope="module")
@@ -203,7 +201,7 @@ def test_axe_inconnu_refuse(eau):
 def test_module_charge_sans_locale_globale():
     import locale
 
-    assert "diagrammes" in sys.modules["pyphysique.thermo.diagrammes"].__name__
+    assert "diagrammes" in sys.modules["thermodiagrammes.diagrammes"].__name__
     assert locale.setlocale(locale.LC_NUMERIC) in ("C", "en_US.UTF-8", "C.UTF-8")
 
 

@@ -19,7 +19,7 @@ glace VI, que la loi de fusion de CoolProp couvre déjà.
 
 import matplotlib.pyplot as plt
 
-from pyphysique.thermo import PT
+from thermodiagrammes import PT
 
 diagramme = PT("Water", L_fusion=333.5, Tlim=(-60, 700), plim=(1e-4, 1e4))
 ax = diagramme.cree(figsize=(8, 6))

@@ -3,15 +3,14 @@ isothermes, (h, s) avec isobares.
 
 D'après J.-J. Fleck (lycée Kléber). Les trois scripts ts/ph/hs_water_simplified.py
 partageaient 90 % de leur code (et hs était une copie octet pour octet de ts) :
-ils sont réunis ici autour de ``pyphysique.thermo``. Figures de 3 × 3 pouces,
+ils sont réunis ici autour de ``thermodiagrammes``. Figures de 3 × 3 pouces,
 en LaTeX, peu d'étiquettes pour rester lisibles à cette taille.
 """
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyphysique.thermo import HS, PH, TS, Fluide
-from pyphysique.thermo.diagrammes import Diagramme, Unites
+from thermodiagrammes import HS, PH, TS, Diagramme, Fluide, Unites
 
 plt.rcParams.update({"text.usetex": True, "font.family": "serif", "font.size": 10})
 

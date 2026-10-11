@@ -8,7 +8,7 @@ les poussait jusqu'à 5 GPa. Valeurs en °C, bar, kJ/kg et kJ/K/kg.
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pyphysique.thermo import TS
+from thermodiagrammes import TS
 
 diagramme = TS("Water", label="Water", slim=(0, 10.1), Tlim=(1, 440))
 

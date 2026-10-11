@@ -4,9 +4,7 @@ import sys
 import numpy as np
 import pytest
 
-pytest.importorskip("CoolProp")
-
-from pyphysique.thermo.fluide import Fluide
+from thermodiagrammes.fluide import Fluide
 
 
 @pytest.fixture(scope="module")
@@ -111,10 +109,10 @@ def test_chaque_paire_d_entrees_de_coolprop_acceptee(eau, sortie, entrees):
 def test_message_explicite_sans_coolprop():
     code = (
         "import sys; sys.modules['CoolProp'] = None\n"
-        "try:\n    import pyphysique.thermo.fluide\n"
+        "try:\n    import thermodiagrammes.fluide\n"
         "except ImportError as e:\n    print(e)"
     )
     sortie = subprocess.run(
         [sys.executable, "-c", code], capture_output=True, text=True, check=True
     )
-    assert sortie.stdout.strip() == "CoolProp manque : pip install 'pyphysique[coolprop]'"
+    assert sortie.stdout.strip() == "CoolProp manque : pip install CoolProp"

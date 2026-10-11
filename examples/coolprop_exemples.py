@@ -70,7 +70,7 @@ vL = 1 / PropsSI("D", "P", 1e5, "Q", 0, fluide)  # liquide saturant
 vG = 1 / PropsSI("D", "P", 1e5, "Q", 1, fluide)  # vapeur saturante
 print(f"Sous 1 bar : v_liquide = {vL:.4g} m³/kg, v_vapeur = {vG:.4g} m³/kg")
 
-# Tracé de base de CoolProp ; pour des diagrammes étiquetés, voir pyphysique.thermo.PH.
+# Tracé de base de CoolProp ; pour des diagrammes étiquetés, voir thermodiagrammes.PH.
 diagramme = PropertyPlot(fluide, "PH", unit_system="KSI")
 diagramme.calc_isolines()
 diagramme.savefig("enthalpy_pressure_graph_for_Water.png")
